@@ -1,0 +1,36 @@
+.bgColor{
+    background-color: #444444;
+    width: 390px;
+    height: 55px;
+    border-radius: 7px;
+    padding-left: 7px;
+}
+.search-bar{
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        border-radius: 33px;
+        width: 340px;
+        background-color: grey;
+        height: 40px;
+        margin-left: 15px;
+}
+.search{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 33px;
+    width: 60px;
+    background-color: grey;
+    height: 40px;
+    /* margin-left: 10px; */
+    margin-top: 7px;
+}
+.center{
+    text-align: center;
+    justify-content: center;
+}
