@@ -13,7 +13,6 @@ class Home extends Component {
 
   changeTitle = (e) => {
     this.setState({ city: e.target.value });
-    console.log(this.state.city);
   }
 
   onSearch = () => {
@@ -21,13 +20,10 @@ class Home extends Component {
       .then((response) => response.json())
       .then((result) => {
         this.setState({ data: result })
-        console.log(result, 'console')
-        localStorage.setItem('testObject', JSON.stringify(this.state.data));
       })
       .catch(() => {
         alert('failed to fetch');
       });
-
   };
 
 
@@ -35,7 +31,6 @@ class Home extends Component {
     const {
       data
     } = this.state;
-    console.log(data,'cityyyyyyyyyyy')
     return (
       <div>
         <Navbar />
