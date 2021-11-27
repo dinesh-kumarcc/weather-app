@@ -1,6 +1,6 @@
 {
   "name": "simple-react-router-website",
-  "homepage": " https://mynameisurl.github.io/simple-react-router-demo/",
+  "homepage": "https://weather-code-corners-app.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
