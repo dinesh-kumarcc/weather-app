@@ -25,7 +25,7 @@ class Weather extends Component {
             <div className="container d-flex justify-content-center pt-300">
             <div style={myStyle}>
                 <h4 className="pt-2 pl-2">Weather in {data.data.name},{data.data.sys.country} </h4>
-                <h4 className="pt-2 pl-2">{data.data.main.temp}</h4>
+                <h4 className="pt-2 pl-2">{data.data.main.temp}<span>"&deg;"F</span></h4>
                 <h5 style={{paddingTop:'130px'}}>Humidity:{data.data.main.humidity} %</h5>
                 <h5>Wind Speed {data.data.wind.speed}meters/sec </h5>
                 <h5>Max Temp{data.data.main.temp_max}<span>Min Temp{data.data.main.temp_min}</span></h5>
