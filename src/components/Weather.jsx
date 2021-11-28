@@ -11,6 +11,9 @@ class Weather extends Component {
 
     render() {
         const data  = this.props;
+       let tempInCelsius = ( (data.data.main.temp) - 32 ) * 5/9;
+       let temp = parseInt(tempInCelsius).toString().slice(0,2);
+        // console.log(temp,'temp',(parseInt(tempInCelsius).toString()).slice(0,1))
         // console.log(data,'data')
         const myStyle = {
             backgroundImage:
@@ -24,13 +27,16 @@ class Weather extends Component {
         };
         return (
             <div className="container d-flex justify-content-center pt-300">
+                {data.data.name || data.data.sys.country || tempInCelsius|| data.data.weather[0].main || data.data.main.humidity || data.data.wind.speed ? (
+
             <div style={myStyle}>
                 <h3 className="pt-2 pl-2 text-white">Weather in {data.data.name},{data.data.sys.country} </h3>
-                <h5 className="pt-2 pl-2 text-white">{data.data.main.temp}<span>&deg;</span></h5>
+                <h5 className="pt-2 pl-2 text-white">{temp}<span>&deg;</span></h5>
                 <h4 className="weather text-white pl-2"><span>☁</span>{data.data.weather[0].main}</h4>
                 <h5 className="weather1 pl-2 text-white">Humidity:{data.data.main.humidity} %</h5>
                 <h5 className="pt-2 pl-2 text-white">Wind Speed {data.data.wind.speed}meters/sec </h5>
             </div>
+                ) : null}
             </div>
             
         )
