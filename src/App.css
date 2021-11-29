@@ -17,16 +17,24 @@
     color: white;
   } */
 .search-bar{
-        display: flex;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 5px;
+  width: 390px;
+  height: 50px;
+  max-width: 4500px;
+  margin: 1em auto;
+  padding: 0px 15px;
+        /* display: flex;
         -webkit-box-align: center;
         align-items: center;
         -webkit-box-pack: center;
         justify-content: center; 
         border-radius: 33px;
-        width: 340px;
+        width: 370px;
         background-color: grey;
         height: 40px;
-        margin-left: 15px;
+        margin-left: 15px; */
         
 }
 .search{

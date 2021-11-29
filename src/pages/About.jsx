@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar.jsx';
 class About extends Component {
   render() {
     return (
-      <div>
+      <div className="main-div">
         <Navbar />
         <div style={{textAlign:'center',justifyContent:'center'}}>
           <h2 className="font-weight-bold mt-4">Weather App</h2>
