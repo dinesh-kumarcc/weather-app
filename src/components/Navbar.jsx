@@ -17,6 +17,15 @@ class Navbar extends Component {
           </div>
           <button className="about-button" type="button">
             <span> <Link className="nav-link text-primary" to="/about">About</Link> </span>
+            </button>
+            <button className="about-button" type="button">
+            <span> <Link className="nav-link text-primary" to="/login">Login</Link> </span>
+          </button>
+          <button className="about-button" type="button">
+            <span> <Link className="nav-link text-primary" to="/register">Register</Link> </span>
+          </button>
+          <button className="about-button" type="button">
+            <span> <Link className="nav-link text-primary" to="/home">Home</Link> </span>
           </button>
         </div>
       </div>

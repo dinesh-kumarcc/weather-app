@@ -3,10 +3,10 @@ import Navbar from '../components/Navbar';
 import Weather from '../components/Weather';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Home.css';
+import './WeatherHome.css';
 import WeatherInF from '../components/WeatherInF';
 
-class Home extends Component {
+class WeatherHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -95,4 +95,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default WeatherHome
