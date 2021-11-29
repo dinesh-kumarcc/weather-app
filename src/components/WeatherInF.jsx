@@ -11,8 +11,8 @@ class WeatherInF extends Component {
 
     render() {
         const data = this.props;
-           let tempInCelsius =  (data.data.main.temp);
-           let temp = parseInt(tempInCelsius).toString().slice(0,2);
+        let tempInCelsius = (data.data.main.temp);
+        let temp = parseInt(tempInCelsius).toString().slice(0, 2);
 
         const myStyle = {
             backgroundImage:

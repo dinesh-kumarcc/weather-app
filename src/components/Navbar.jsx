@@ -20,22 +20,6 @@ class Navbar extends Component {
           </button>
         </div>
       </div>
-
-      // <nav className="navbar navbar-toggleable-md card bg-dark">
-      //   <div className="container">
-      //    <h2> <Link className="navbar-brand font-weight-bold" to="/">Weather </Link></h2>
-      //     <div className="collapse navbar-collapse" id="navbarCollapse">
-      //       <ul className="navbar-nav ml-auto">
-
-      //         <li className="nav-item">
-      //           <Link className="nav-link text-primary" to="/about">About</Link>
-      //         </li>
-
-      //       </ul>
-      //     </div>
-      //   </div>
-      // </nav>
-
     );
   }
 }

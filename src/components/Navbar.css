@@ -55,16 +55,16 @@ a {
     color: rgb(25, 118, 210);
 }
 .style2{
-  margin: 0px;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  letter-spacing: 0.0075em;
-  color: inherit;
-  -webkit-box-flex: 1;
-  flex-grow: 1;
-  display: block
+    margin: 0px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+    color: inherit;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    display: block
 }
 .about-button{
     -webkit-tap-highlight-color: transparent;

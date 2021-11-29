@@ -21,7 +21,6 @@ class About extends Component {
           <Link className="nav-link font-weight-bold mt-2" to="/">E-mail</Link>
           <Link className="nav-link font-weight-bold mt-2" to="/">LinkedIn</Link>
         </div>
-        {/* <Footer /> */}
       </div>
     );
   }
