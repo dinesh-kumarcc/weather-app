@@ -24,6 +24,10 @@ class Home extends Component {
     this.setState({ converter: false });
   }
 
+  changeTemChange = (e) => {
+    this.setState({ converter: true });
+  }
+
   onSearch = () => {
     fetch(`https://v1.nocodeapi.com/savreentiwana/ow/FvCjBqjFsGmwAIzT/byCityName?q=${this.state.city}`)
       .then((response) => response.json())
@@ -50,7 +54,7 @@ class Home extends Component {
             CELSIUS
           </button>
         ) : (
-          <button className="button" onClick={this.changeTem} type="button">
+          <button className="button" onClick={this.changeTemChange} type="button">
             FARENHEIT
           </button>
         )}
