@@ -1,11 +1,8 @@
-import { initializeApp } from 'firebase/app';
-import firebase from 'firebase';
-// import firebase from 'firebase/compat/app';
-// import 'firebase/compat/auth';
-// import 'firebase/compat/firestore';
-// TODO: Replace the following with your app's Firebase project configuration
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
 const firebaseConfig = {
-        apiKey: "AIzaSyCPJ7hOVCU6dXGyfrLlGVhu0L0ukVQNKfA",
+    apiKey: "AIzaSyCPJ7hOVCU6dXGyfrLlGVhu0L0ukVQNKfA",
     authDomain: "login-to-weather.firebaseapp.com",
     projectId: "login-to-weather",
     storageBucket: "login-to-weather.appspot.com",
@@ -16,14 +13,26 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export const auth = firebase.auth();
-export default app;
-// import firebase from 'firebase/compat/app';
-// import 'firebase/compat/auth';
-// import 'firebase/compat/firestore';
-// // import firebase from "firebase/app";
-// // import "firebase/auth";
-// const config = {
+export const auth = getAuth(app);
+
+
+
+
+
+
+
+
+
+
+// import { initializeApp } from 'firebase/app';
+// import { getAuth } from 'firebase/auth';
+// import { getDatabase } from "firebase/database";
+
+// // import firebase from 'firebase/compat/app';
+// // import 'firebase/compat/auth';
+// // import 'firebase/compat/firestore';
+
+// const firebaseConfig = {
 //     apiKey: "AIzaSyCPJ7hOVCU6dXGyfrLlGVhu0L0ukVQNKfA",
 //     authDomain: "login-to-weather.firebaseapp.com",
 //     projectId: "login-to-weather",
@@ -32,9 +41,65 @@ export default app;
 //     appId: "1:725217149992:web:83f2fa79794cf91a9c611d",
 //     measurementId: "G-LNG5Z4BFVH"
 // };
-// firebase.initializeApp(config);
+
+// const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
+// const database = getDatabase(app);
+
+// export { auth, database }
+
+// // const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+// // export const db = firebaseApp.firestore();
+
+// // export const auth = getAuth(firebaseApp);
+
+
+// // export default db;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import firebase from 'firebase/compat/app';
+// import 'firebase/compat/auth';
+// import 'firebase/compat/firestore';
+
+// const firebaseConfig = {
+//     apiKey: "AIzaSyCPJ7hOVCU6dXGyfrLlGVhu0L0ukVQNKfA",
+//     authDomain: "login-to-weather.firebaseapp.com",
+//     projectId: "login-to-weather",
+//     storageBucket: "login-to-weather.appspot.com",
+//     messagingSenderId: "725217149992",
+//     appId: "1:725217149992:web:83f2fa79794cf91a9c611d",
+//     measurementId: "G-LNG5Z4BFVH"
+// };
+
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+// export const db = firebaseApp.firestore();
+
 // export const auth = firebase.auth();
-// // export default app;
+// export default db;
+
+
+
+
 
 
 

@@ -9,13 +9,16 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
+    "bootstrap": "^3.4.1",
     "firebase": "^9.5.0",
     "react": "^15.6.1",
+    "react-bootstrap": "^2.0.2",
     "react-dom": "^15.6.1",
     "react-fontawesome": "^1.7.1",
     "react-icons": "^4.3.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.13"
+    "react-scripts": "1.0.13",
+    "sweetalert": "^2.1.2"
   },
   "scripts": {
     "predeploy": "npm run build",

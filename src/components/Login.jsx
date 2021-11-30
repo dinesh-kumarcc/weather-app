@@ -1,6 +1,10 @@
 import React, { Component } from "react";
-import Navbar from '../components/Navbar.jsx';
-// import firebase from 'firebase';
+import Navbar from './Navbar.jsx';
+import {
+    signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../firebase.js";
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
@@ -9,6 +13,14 @@ class Login extends Component {
             email: '',
             password: ''
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+    }
+
+    componentDidMount(){
+        if(JSON.parse(localStorage.getItem("token"))){
+            this.props.history.push("/weatherhome"); 
+        }
     }
 
     handleChange(event) {
@@ -17,36 +29,24 @@ class Login extends Component {
         })
     }
 
-    // async login(){
-    //     try{
-    //         await firebase.login(this.state.email,this.state.password)
-    //     }catch(error){
-    //         alert(error.message)
-    //     }
-    // }
 
+    async handleLogin(event) {
+        event.preventDefault();
+        await signInWithEmailAndPassword(auth, this.state.email, this.state.password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(userCredential.user)
+                if (userCredential.user.accessToken) {
+                    localStorage.setItem('token', JSON.stringify(userCredential.user.accessToken));
+                    this.props.history.push("/weatherhome");
+                }
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+    }
 
-    // // Import the functions you need from the SDKs you need
-    // import { initializeApp } from "firebase/app";
-    // import { getAnalytics } from "firebase/analytics";
-    // // TODO: Add SDKs for Firebase products that you want to use
-    // // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // // Your web app's Firebase configuration
-    // // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    // const firebaseConfig = {
-    //   apiKey: "AIzaSyCPJ7hOVCU6dXGyfrLlGVhu0L0ukVQNKfA",
-    //   authDomain: "login-to-weather.firebaseapp.com",
-    //   projectId: "login-to-weather",
-    //   storageBucket: "login-to-weather.appspot.com",
-    //   messagingSenderId: "725217149992",
-    //   appId: "1:725217149992:web:83f2fa79794cf91a9c611d",
-    //   measurementId: "G-LNG5Z4BFVH"
-    // };
-
-    // // Initialize Firebase
-    // const app = initializeApp(firebaseConfig);
-    // const analytics = getAnalytics(app);
 
     render() {
         return (
@@ -54,25 +54,29 @@ class Login extends Component {
                 <Navbar />
                 <div style={{ textAlign: 'center', justifyContent: 'center' }}>
                     <h4>Login</h4>
-                    <label>
-                        Email:
-                        <input
-                            type="text"
-                            name="email"
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                        />
-                    </label>
-                    <label>
-                        Password:
-                        <input
-                            type="text"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                        />
-                    </label><br />
-                    <input type="submit" value="Submit" />
+
+                    <div className="container">
+                        <form className="mt-5 py-5 px-5" autoComplete="off" onSubmit={this.handleLogin}>
+
+                            <p className="lead">Fill in the form below to Login an weather account.</p>
+                            {/* <div className="form-group">
+                                <input className="form-control" placeholder="Name" name="name" onChange={this.handleChange} value={this.state.name}></input>
+                            </div> */}
+                            <div className="form-group">
+                                <input className="form-control" placeholder="Email" name="email" type="email" onChange={this.handleChange} value={this.state.email}></input>
+                            </div>
+                            <div className="form-group">
+                                <input className="form-control" placeholder="Password" name="password" onChange={this.handleChange} value={this.state.password} type="password"></input>
+                            </div>
+                            <div className="form-group">
+                                {/* {this.state.error ? <p className="text-danger">{this.state.error}</p> : null} */}
+                                <button className="btn btn-primary rounded-pill px-5">Login</button>
+                                <span> <Link className="nav-link text-primary" to="/register">Register</Link> </span>
+                            </div>
+                            <hr></hr>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         )

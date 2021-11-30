@@ -1,25 +1,56 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route ,Redirect} from 'react-router-dom';
 import './App.css';
 import WeatherHome from './pages/WeatherHome';
 import About from './pages/About';
-import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
+// import firebase from 'firebase/compat';
+import firebase from './firebase'
+import {auth} from './firebase'
 
 class App extends Component {
+  // constructor(){
+  //   super();
+  //   this.state={
+  //     authenticated: false,
+  //     loading: true,
+  //   }
+  // }
+
+  // componentDidMount() {
+  //   this.state.firebaseInitialized.isInitialized().then(val => {
+  //     if(val){
+  //       this.setState({
+  //         firebaseInitialized:true,
+  //         loading:false
+  //       })
+  //     }else{
+  //       this.setState({
+  //         authenticated:false,
+  //         loading:false
+  //       })
+  //     }
+	// 	})
+  // }
   render() {
-    return (
+    // return this.state.loading === true ? <h2>Loading...</h2> : (
+      return(
       <Router>
         <div>
-          <Route exact path="/" component={WeatherHome}/>
-          <Route path="/about" component={About}/>
-          <Route path="/home" component={Home}/>
-          <Route path="/login" component={Login}/>
-          <Route path="/register" component={Register}/>
+          {JSON.parse(localStorage.getItem("token")) ? (
+            <div>
+          <Route exact path="/weatherhome" component={WeatherHome}/>
+          <Route exact path="/about" component={About}/>
+          </div>
+          ):(
+            <Redirect from="main" to="/" />
+            )}
+          <Route exact path="/" component={Login}/>
+            <Route exact path="/register" component={Register}/>
         </div>
       </Router>
-    );
+    ) 
   }
 }
 
