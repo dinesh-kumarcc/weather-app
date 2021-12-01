@@ -1,0 +1,299 @@
+Oimport React, { Component } from "react";
+// import { auth,database } from "../firebase";
+import db, { auth, provider } from "../firebase";
+import { getFirestore, collection, query, onSnapshot, addDoc, setDoc, doc } from "firebase/firestore";
+/O/ 
+//OO import firebase from "firebase/compat";
+
+class TodoAdd extends Component {
+    Oconstructor() {
+        super();
+        this.state = {
+            note: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.addNote = this.addNote.bind(this);
+    }
+
+    // componentDidMount(){
+    //     auth().onAuthStateChanged((authenticate)=>{
+    /B/      if (aOuthenticate) {
+    //       this,this.props.navigation.replace('todoapp')
+    //      } else {
+    //OOBOBBO       this,this.props.navigation.replace('login')
+    //      }OOOBO
+    //     })
+    //    }
+
+    // addNote = e => {
+    //     e.preventDefault();
+
+    //     try {
+    //         const collectionRef = doc(database, 'note');
+    //         const docRef = addDoc(collectionRef, {
+    //             note: this.state.note,
+    //         });
+    //       } catch (e) {
+    //         console.error("Error adding document: ", e);
+    //       }
+    //     }
+
+
+
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    async addNote(event) {
+        event.preventDefault();
+        console.log(auth)
+        const db = getFirestore(auth);
+        console.log('jj');
+        // const value = prompt("Enter value")
+        // const collectionRef = collection(db,"note");
+        // const payload = {value};
+        
+        // const docRef = await addDoc(collection,payload)
+        // console.log("id",docRef.id)
+
+        // const db = getFirestore(auth);
+
+        // db.collection('todos').add({
+        //     todo: this.state.note,
+        //     //   datetime: firebase.firestore.FieldValue.serverTimestamp()
+        // })
+        // return 'note'
+
+
+        // const todoRef = firebase.database().ref('Todo');
+        // const todo = {
+        //     title,
+        //     complete: false,
+        // };
+        // todoRef.push(todo);
+        // setTitle('')
+    }
+
+    render() {
+        return (
+            <div>
+                <h2>Note</h2>
+
+                <input placeholder="add note" name="note" type="text" onChange={this.handleChange} value={this.state.note}></input>
+                <button onClick={this.addNote}>Add</button>
+            </div>
+
+        )
+    }
+}
+export default TodoAdd
+
+
+
+
+
+
+
+
+
+
+// import React, { useState,useCallback } from "react";
+
+// function TodoAdd() {
+//     const [note, setNote] = useState('')
+
+//     // const handleNoteChange = useCallback((newValue) => {
+//     //     console.log('input')
+//     //     setNote(newValue);
+//     // }, [])
+//     return (
+//         <div>
+//             <input type="text" placeholder="add note" value={note} onChange={(e)=>handleNoteChange(e.target.value)}/>
+
+//         </div>
+//     )
+// }
+// export default TodoAdd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState, useCallback } from 'react'
+// import { useHistory } from "react-router-dom";
+
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
+// import {Button} from "react-bootstrap";
+// import swal from 'sweetalert';
+
+
+
+// function TodoAdd() {
+//     let history = useHistory();
+//     const [list, setList] = useState([]);
+//     const [nameToBeUpdate, setNameToUpdate] = useState('');
+//     const [id, setId] = useState(null);
+//     const [disable, setDisable] = React.useState(false);
+//     const [loginuserid, setLoginuserid] = useState('');
+//     const [userRecord, setUserRecord] = useState([]);
+//     const [modalIsOpen, setIsOpen] = React.useState(false);
+//     const [note, setNote] = useState('');
+//     const Record = [];
+
+
+
+
+//     useEffect(() => {
+
+//         const data = JSON.parse(localStorage.getItem('data'));
+//         const userId = JSON.parse(localStorage.getItem('userid'));
+//         if (!userId) {
+//             history.push('./')
+//         }
+//         setList(JSON.parse(localStorage.getItem('data')));
+//         if (data) {
+
+//             const listsArray = data.filter(list => (list.userid === userId));
+//             console.log('listsArray', listsArray);
+//             setUserRecord(listsArray);
+//         }
+//         setLoginuserid(userId);
+
+//     }, []);
+
+//     const handleNoteChange = useCallback((newValue) => {
+//         console.log('input')
+//         setNote(newValue);
+//     }, [])
+
+//     function logoutClick() {
+//         localStorage.removeItem('userid');
+//         history.push("/");
+//     }
+
+//     function openFromParent() {
+//         setIsOpen(true);
+//     }
+
+//     var subtitle;
+
+//     function afterOpenModal() {
+//         subtitle.style.color = '#f00';
+//     }
+
+//     function closeModal() {
+//         console.log('close')
+//         setIsOpen(false);
+//     }
+
+//     function handleAdd(note) {
+//         console.log('Handle Add');
+//         let data = JSON.parse(localStorage.getItem('data')) || [];
+//         let noteData = {};
+//         noteData['id'] = Math.random();
+//         noteData['name'] = note;
+//         noteData['userid'] = loginuserid;
+
+//         data.push(noteData)
+
+//         localStorage.setItem('data', JSON.stringify(data));
+//         let dataArray = userRecord;
+//         dataArray.push(noteData);
+//         setUserRecord(dataArray);
+//         setIsOpen(false);
+//         swal('Note Added')
+//     }
+
+//     const handleDelete = (id) => {
+//         let list = JSON.parse(localStorage.getItem('data')) || [];
+//         const updatedList = list.filter((list) => list.id !== id);
+//         const updatedRecords = userRecord.filter((record) => record.id !== id);
+//         setUserRecord(updatedRecords);
+//         localStorage.setItem('data', JSON.stringify(updatedList));
+//     }
+
+//     const handleUpdate = (item, id) => {
+//         setNameToUpdate(item.name);
+//         setId(id);
+//         setDisable(false)
+//     }
+
+//     const handleSave = (id) => {
+//         let prevData = JSON.parse(localStorage.getItem('data'));
+//         let objectToBeUpdate = prevData[id];
+//         objectToBeUpdate['name'] = nameToBeUpdate;
+//         prevData.splice(id, 1, objectToBeUpdate);
+//         setUserRecord(prevData);
+//         localStorage.setItem('data', JSON.stringify(prevData));
+//         setDisable(true);
+//     }
+
+//     return (
+//         <div>
+//             <div>
+
+//                 <Button variant="primary" size="sm" className="col-md-2 mt-4 float-right" onClick={openFromParent}>
+//                     Add Note
+//                 </Button>
+
+//                 <div className="card mt-4">
+//                     {userRecord ?
+//                         (<div>
+//                             <div className="card-body">
+//                                 {(userRecord.map((item, index) => {
+//                                     return (
+//                                         <div key={index}>
+//                                             {!disable ? (<div>
+//                                                 <input hidden={id !== index} type="text" defaultValue={nameToBeUpdate} onChange={(e) => setNameToUpdate(e.target.value)}></input>
+//                                                 <Button variant="primary" size="sm" disabled={disable} hidden={id !== index} onClick={() => handleSave(index)}>Save</Button>
+//                                             </div>) : null}
+//                                             <li>{item.name}
+//                                                 <span style={{ padding: 20 }}>
+//                                                     <Button variant="primary" size="sm" onClick={() => handleDelete(item.id)}>
+//                                                         Delete
+//                                                     </Button>
+//                                                 </span>
+//                                                 <span style={{ padding: 20 }}>
+//                                                     <Button variant="primary" size="sm" onClick={() => handleUpdate(item, index)}>
+//                                                         Update
+//                                                     </Button>
+//                                                 </span>
+//                                             </li>
+//                                         </div>
+//                                     )
+//                                 }))}
+//                             </div>
+//                         </div>) : null}
+
+//                 </div>
+
+//                 <Button variant="primary" size="lg" onClick={logoutClick}>
+//                     Logout
+//                 </Button>
+
+//             </div>
+//     </div>
+//     )
+// }
+
+// export default TodoAdd
+
+

@@ -4,9 +4,10 @@ import './App.css';
 import WeatherHome from './pages/WeatherHome';
 import About from './pages/About';
 import Login from './components/Login';
+import TodoAdd from './components/TodoAdd';
 import Register from './components/Register';
-// import firebase from 'firebase/compat';
-import firebase from './firebase'
+import firebase from 'firebase/compat/app';
+// import firebase from './firebase'
 import {auth} from './firebase'
 
 class App extends Component {
@@ -48,6 +49,7 @@ class App extends Component {
             )}
           <Route exact path="/" component={Login}/>
             <Route exact path="/register" component={Register}/>
+            <Route exact path="/todoadd" component={TodoAdd}/>
         </div>
       </Router>
     ) 

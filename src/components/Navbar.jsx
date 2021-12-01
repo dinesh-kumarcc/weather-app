@@ -9,21 +9,19 @@ import {
 import { auth } from "../firebase.js";
 
 class Navbar extends Component {
-  // constructor(){
-  //   super();
-  //   // this.state = {
+  constructor(props){
+    super(props);
+    // this.state = {
 
-  //   // }
-  //   this.handleLogout = this.handleLogout.bind(this);
-  // }
+    // }
+    this.handleLogout = this.handleLogout.bind(this);
+  }
 
-//   async handleLogout() {
-//       await signOut(auth);
-//       localStorage.removeItem("token");
-//       if(!localStorage.getItem("token")){
-//         this.props.history.push("/")
-//       }
-// }
+  async handleLogout() {
+      await signOut(auth);
+      // this.props.history.push("/");
+      localStorage.removeItem("token");
+}
 
   render() {
     return (
@@ -38,12 +36,15 @@ class Navbar extends Component {
           <button className="about-button" type="button">
             <span> <Link className="nav-link text-primary" to="/about">About</Link> </span>
             </button>
-          {/* <button className="about-button" type="button">
-            <span> <Link className="nav-link text-primary" to="/register">Register</Link> </span>
-          </button> */}
-          {/* <button className="about-button" type="button" onClick={this.handleLogout}>
+          <button className="about-button" type="button">
+            <span> <Link className="nav-link text-primary" to="/todoadd">TodoAdd</Link> </span>
+          </button>
+          {JSON.parse(localStorage.getItem("token")) ? (
+            <button className="about-button" type="button" onClick={this.handleLogout}>
            Logout
-          </button> */}
+          </button>
+          ) : null}
+          
         </div>
       </div>
     );

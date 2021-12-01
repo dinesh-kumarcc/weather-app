@@ -2162,3 +2162,95 @@ To resolve this:
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+         const noteCol = query(collection(db, "note"));
+         const noteSnapshot = await getDocs(noteCol);
+         console.log('noteSnapshot', noteSnapshot);
+         const notes = [];
+         noteSnapshot.forEach((doc) => {
+             // doc.data() is never undefined for query doc snapshots
+           console.log(doc.id, " => ", doc.data());
+             notes.push({
+                 ...doc.data(),
+                 id: doc.id
+             })
+         });
+         // const noteList = noteSnapshot.docs.map(doc => doc.data());
+         this.setState({ noteData: notes })
+
+        // onSnapshot(collection(db, "note"), (snapshot) => {
+        //     this.setState({ noteData: snapshot._snapshot.docChanges })
+        //     console.log(this.state.noteData, '------------')
+        // })
+
+
+
+
+
+
+
+
+
+
+        async deleteNote(id) {
+
+        // console.log(id, 'delete id')
+
+        // db.collection('note').doc(id)
+
+        // db.collection('note').doc(id).delete()
+        // .then(()=>{
+        //     alert('delete')
+        // }).catch((err)=>{
+        //     alert(err)
+        // })
+
+        const noteRef = doc(db, 'note', id);
+        await deleteDoc(noteRef);
+
+        this.getData();
+
+
+        // await updateDoc(noteRef, {
+        //     note: deleteField()
+        // });
+
+
+        // db.collection('note').doc(id).delete().then(res => {
+        //     console.log('Deleted!', res);
+        // });
+
+        // console.log('delete')
+        //  deleteDoc(doc(db, "note"))
+    }
+
+// console.log('doc',doc.doc.data.value.mapValue.fields.name.stringValue);
+
+add note :  // const collectionRef = doc(db, 'note');
+            // const docRef = addDoc(collectionRef, {
+            //     note: this.state.note,
+            // }); -->
