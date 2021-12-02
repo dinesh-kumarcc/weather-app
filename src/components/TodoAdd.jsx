@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { auth, db } from "../firebase";
-import { query, getDocs, collection,orderBy, deleteField, updateDoc, onSnapshot, addDoc, deleteDoc, doc,Timestamp } from "firebase/firestore";
+import { query, getDocs, collection, orderBy, deleteField, updateDoc, onSnapshot, addDoc, deleteDoc, doc, Timestamp } from "firebase/firestore";
 import firebase from "firebase/compat";
 import Navbar from './Navbar.jsx';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt,faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class TodoAdd extends Component {
@@ -11,20 +11,24 @@ class TodoAdd extends Component {
         super();
         this.state = {
             note: '',
+            show: false,
+            updateNote: '',
+            id: '',
             noteData: []
         }
         this.handleChange = this.handleChange.bind(this);
         this.addNote = this.addNote.bind(this);
         this.deleteNote = this.deleteNote.bind(this);
+        this.showUpdateField = this.showUpdateField.bind(this);
+        this.updateField = this.updateField.bind(this);
     }
 
     componentDidMount() {
         this.getData()
     }
 
-
     async getData() {
-        const noteCol = query(collection(db, "note"),orderBy("name", "asc"));
+        const noteCol = query(collection(db, "note"), orderBy("name", "asc"));
         const noteSnapshot = await getDocs(noteCol);
         console.log('noteSnapshot', noteSnapshot);
         const notes = [];
@@ -42,10 +46,34 @@ class TodoAdd extends Component {
 
     }
 
+    // const stateChange = (event) =>{
+    //     db.collection('todos').doc(props.task.id).update({title : task.title});
+    //     setEdit(false);
+    // }
+
+
+    showUpdateField = (id) => {
+        this.setState({ id: id })
+        console.log(id, 'id for update')
+        this.setState({ show: true });
+    };
+
+
+    updateField = () => {
+        // console.log('hhhh'+this.state.id)
+        const noteRef = doc(db, "note", this.state.id);
+        // console.log(noteRef,'noteref')
+        updateDoc(noteRef, {
+            name: this.state.updateNote
+        });
+        this.getData();
+        this.setState({ show: false });
+    };
+
 
 
     async deleteNote(id) {
-        const noteRef = doc(db, 'note', id);
+        const noteRef = doc(db, 'note',id);
         await deleteDoc(noteRef);
         this.getData();
     }
@@ -72,7 +100,6 @@ class TodoAdd extends Component {
             [event.target.name]: event.target.value
         })
     }
-
 
     render() {
         const { noteData } = this.state;
@@ -106,9 +133,28 @@ class TodoAdd extends Component {
                                                         <button className="delete-icon">
                                                             <FontAwesomeIcon onClick={() => this.deleteNote(doc.id)} icon={faTrashAlt} /></button>
                                                     </span>
-                                                        {/* <span>
-                                                            <button onClick={e => this.modalOpen(e)}>Update</button>
-                                                        </span> */}
+
+                                                       
+                                                        <span>
+                                                            <button className="delete-icon">
+                                                            <FontAwesomeIcon onClick={() => this.showUpdateField(doc.id)} icon={faEdit} />
+                                                            </button>
+                                                        </span>
+
+                                                        {this.state.show ? (
+                                                            <div>
+                                                                <input 
+                                                                type="text" 
+                                                                placeholder="edit note" 
+                                                                hidden={this.state.id !== doc.id} 
+                                                                defaultValue={doc.name}  
+                                                                onChange={(e)=>this.setState({updateNote:e.target.value})} 
+                                                                />
+                                                                <span>
+                                                                    <button className="btn btn-primary h-10" hidden={this.state.id !== doc.id} onClick={this.updateField}>save</button>
+                                                                </span>
+                                                            </div>
+                                                        ) : null}
                                                     </h6>
                                                 </div>
                                             )
